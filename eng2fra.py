@@ -350,12 +350,12 @@ def eval_seq2seq(x, encoder, decoder):
     return format_french_sentence(decoder_list)
 
 
-def test_use_seq2seq():
+def test_use_seq2seq(shows= 3):
     encoder = Encoder(len(eng_word2idx)).to(device)
     decoder = Decoder(len(fra_word2idx)).to(device)
     encoder.load_state_dict(torch.load("encoder_model.pth"))
     decoder.load_state_dict(torch.load("decoder_model.pth"))
-    for i in range(3):
+    for i in range(shows):
         x = pairs[6000 + i][0]
         y = pairs[6000 + i][1]
         tmp_x = [eng_word2idx[word] for word in x.split(' ')]
@@ -383,4 +383,5 @@ if __name__ == '__main__':
     # train_model(train_loader, epochs= 10)
     # train_model(train_loader, epochs= 30)
     # test_use_seq2seq()
+
     # print(normalizeFra("Arrête-toi !"))
